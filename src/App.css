@@ -1,36 +1,18 @@
 .app-wrapper{
   display: grid;
 
-  width: 1200px;
+  width: 1860px;
   margin: 0 auto;
 
   grid-template-areas: 
-  "h h h"
-  "n c c";
-  grid-template-rows: 60px 1fr;
+  "header header header"
+  "navbar content content";
+  grid-template-rows: auto 1fr;
   grid-template-columns: 2fr 10fr;
-
-  grid-gap: 10px;
+  grid-gap: 30px;
 }
 
-.header{
-  grid-area: h;
-  background-color: #F5F5F5;
-}
-
-header img{
-  height: 30px;
-}
-
-.nav{
-  grid-area: n;
-  background-color: #C4C4C4;
-}
-
-.content{
-  grid-area: c;
-}
-
-.content__main-img{
-  width: 100%;
+.app-wrapper-content{
+  grid-area: content;
+  background: aquamarine;
 }
