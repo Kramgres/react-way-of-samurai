@@ -47,24 +47,24 @@ export const updateNewPostTextActionCreator = (text) =>
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const getUserProfile = (userId) => {
     return (dispatch) => {
-        profileAPI.getUserProfile(userId).then(response => {
-            dispatch(setUserProfile(response.data));
+        profileAPI.getUserProfile(userId).then(data => {
+            dispatch(setUserProfile(data));
         })
     }
 }
 export const setStatus = (status) => ({type: SET_STATUS, status});
 export const getStatus = (userId) => {
     return (dispatch) => {
-        profileAPI.getStatus(userId).then(response => {
-            dispatch(setStatus(response.data));
+        profileAPI.getStatus(userId).then(data => {
+            dispatch(setStatus(data));
         })
     }
 }
 export const updateStatus = (status) => {
     return (dispatch) => {
-        profileAPI.updateStatus(status).then(response => {
-            if(response.data.resultCode === 0){
-                dispatch(setStatus(response.data));
+        profileAPI.updateStatus(status).then(data => {
+            if(data.resultCode === 0){
+                dispatch(setStatus(status));
             }
         })
     }
