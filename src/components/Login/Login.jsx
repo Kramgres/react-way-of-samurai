@@ -5,10 +5,9 @@ import {required} from "../../utils/validators/validators";
 import {Redirect} from "react-router";
 import styles from "./../common/FormsControls/FormControls.module.css"
 
-export const LoginForm = (props) => {
-        console.log(props);
+export const LoginForm = ({handleSubmit, error, captchaUrl}) => {
         return (
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <Field name="login"
                            type="text"
@@ -25,18 +24,18 @@ export const LoginForm = (props) => {
                         validate={[required]}/>
                 </div>
                 {
-                    props.error &&
+                    error &&
                     <div className={styles.formSummaryError}>
-                        {props.error}
+                        {error}
                     </div>
                 }
 
                 <div>
                     <Field name="rememberMe" type="checkbox" component={Input}/> remember me
                 </div>
-                {props.captchaUrl &&
+                {captchaUrl &&
                 <div>
-                    <div><img src={props.captchaUrl} alt="Captcha"/></div>
+                    <div><img src={captchaUrl} alt="Captcha"/></div>
                     <Field
                         name="captcha"
                         type="text"

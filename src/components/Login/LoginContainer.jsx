@@ -1,5 +1,4 @@
 import React from "react";
-import Profile from "./Login";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import Login from "./Login";

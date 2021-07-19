@@ -1,23 +1,23 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 
-let User = (props) => {
+let User = ({user, followingInProgress, follow, unfollow}) => {
     return (
         <div>
-            <NavLink to={'/profile/' + props.user.id}>
-                <div>{props.user.name}</div>
+            <NavLink to={'/profile/' + user.id}>
+                <div>{user.name}</div>
             </NavLink>
-            <div>{props.user.status}</div>
-            {props.user.followed ?
+            <div>{user.status}</div>
+            {user.followed ?
                 <button
-                    disabled={props.followingInProgress.some(id => id === props.user.id)}
+                    disabled={followingInProgress.some(id => id === user.id)}
                     onClick={() => {
-                        props.unfollow(props.user.id)
+                        unfollow(user.id)
                 }}>Unfollow</button> :
                 <button
-                    disabled={props.followingInProgress.some(id => id === props.user.id)}
+                    disabled={followingInProgress.some(id => id === user.id)}
                     onClick={() => {
-                        props.follow(props.user.id)
+                        follow(user.id)
                 }}>Follow</button>}
         </div>
     )

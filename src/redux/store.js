@@ -1,50 +1,25 @@
+import {applyMiddleware, combineReducers, compose} from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
+import usersReducer from "./users-reducer";
+import authReducer from "./auth-reducer";
+import thunk from "redux-thunk";
+import {reducer as formReducer} from "redux-form";
+import appReducer from "./app-reducer";
 
-let store = {
-    _state: {
-        profilePage: {
-            posts: [
-                {id: 1, message: 'Hello, friend', likesCount: 11},
-                {id: 2, message: 'Normal', likesCount: 6},
-            ],
-            newPostText: 'default'
-        },
-        dialogsPage: {
-            dialogs: [
-                {id: 1, name: 'Sergey'},
-                {id: 2, name: 'Andrew'},
-                {id: 3, name: 'Anton'},
-                {id: 4, name: 'Olga'},
-                {id: 5, name: 'Oleg'},
-                {id: 6, name: 'Vitaly'},
-            ],
-            messages: [
-                {id: 1, message: 'Hi ho5'},
-                {id: 2, message: 'Hello3'},
-                {id: 3, message: 'Yop'},
-            ],
-            newMessageText: '...'
-        }
-    },
 
-    _callSubscriber() {
-        console.log("state changed");
-    },
+const {createStore} = require("redux");
 
-    getState() {
-        return this._state;
-    },
+let reducers = combineReducers({
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    usersPage: usersReducer,
+    auth: authReducer,
+    form: formReducer,
+    app: appReducer
+});
 
-    subscribe(observer) {
-        this._callSubscriber = observer;
-    },
-
-    dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action);
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-        this._callSubscriber(this._state);
-    }
-}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 export default store;

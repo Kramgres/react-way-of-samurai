@@ -1,24 +1,16 @@
 import React from "react";
-import styles from "./Users.module.css";
 import User from "./User/User";
+import Pagination from "../common/Pagination/Pagination";
 
-let Users = (props) =>{
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
+let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, ...props}) => {
     return (
         <div>
-            <div>
-                {
-                    pages.map(p => {
-                        return <span onClick={(e) => props.onPageChanged(p)}
-                                     className={props.currentPage === p && styles.selectedPage}>{p}</span>
-                    })
-                }
-            </div>
-            {props.users.map(u => <User user={u}
+            <Pagination currentPage={currentPage}
+                        totalUsersCount={totalUsersCount}
+                        pageSize={pageSize}
+                        onPageChanged={onPageChanged}/>
+            {props.users.map(u => <User key={u.id}
+                                        user={u}
                                         follow={props.follow}
                                         unfollow={props.unfollow}
                                         followingInProgress={props.followingInProgress}/>)}

@@ -1,5 +1,4 @@
 const SEND_MESSAGE = 'SEND-MESSAGE ';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
     dialogs: [
